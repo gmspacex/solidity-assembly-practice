@@ -11,9 +11,9 @@ describe("EncryptDecrypt", () => {
     await testContract.deployed();
   })
   it("testing encryptDecrypt", async () => {
-    const data = 'gmspacex'; // actual length = 22 less than 32 bytes, only 1 loop => i = 0
+    const data = 'hello world'; // actual length = 22 less than 32 bytes, only 1 loop => i = 0
     const bytesUri = ethers.utils.toUtf8Bytes(data);
-    const key = ethers.utils.toUtf8Bytes('hello');
+    const key = ethers.utils.toUtf8Bytes('mykey');
 
     console.log('\n-------Solidity Debug--------');
     const encryptedBaseUri = await testContract.encryptDecrypt(
@@ -24,7 +24,7 @@ describe("EncryptDecrypt", () => {
 
     console.log('\n------- JS Debug--------');
     console.log('Data:\t', ethers.utils.formatBytes32String(data))
-    console.log('Key:\t', ethers.utils.formatBytes32String('hello'))
+    console.log('Key:\t', ethers.utils.formatBytes32String('mykey'))
     // bytes32 hash = keccak256(abi.encodePacked(key, i));
     const hash = ethers.utils.keccak256(ethers.utils.solidityPack(["bytes", "uint256"], [key, 0]));
     console.log('Hash:\t', hash);

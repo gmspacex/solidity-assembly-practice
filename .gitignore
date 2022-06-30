@@ -8,5 +8,4 @@ yarn.lock
 cache
 artifacts
 deployments
-typechain
 .openzeppelin
